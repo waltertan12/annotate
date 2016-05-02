@@ -6,3 +6,16 @@
 body {
   font-family: sans-serif;
 }
+
+.annotations {
+  position: fixed;
+  width: 300px;
+  border: 1px solid gray;
+  height: 100%;
+  top:       0;
+  right: -100%;
+}
+
+.annotations-list {
+  list-style-type: none;
+}

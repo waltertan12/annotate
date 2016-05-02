@@ -1,3 +1,4 @@
+var id = 0;
 document.addEventListener('mouseup', (event) => {
   var annotations = document.getElementById('annotations');
   var selection = document.getSelection(),
@@ -7,11 +8,15 @@ document.addEventListener('mouseup', (event) => {
   if (selectionString.length > 0) {
     annotation = prompt('Annotate this!');
     
-    annotations.innerHTML += '<li>' + '"' +
-      selectionString + '"' +
+    annotations.innerHTML += '<li class="annotation">' + 
+      '"' +
+      selectionString + 
+      '"' +
       ': '  + 
       annotation + 
       '</li>';
+
+    annotations.style.right = '0%';
 
     range = selection.getRangeAt(0);
     customTag = document.createElement('mark');
@@ -27,8 +32,12 @@ document.addEventListener('mouseup', (event) => {
     });
 
     customTag.addEventListener('click', (event) => {
-      alert('You\'ve annotated the web!');
-    })
+      annotations.style.right = '0%';
+    });
+
+    annotations.addEventListener('click', (event) => {
+      annotations.style.right = '100%';
+    });
 
     range.deleteContents();
     range.insertNode(customTag);
