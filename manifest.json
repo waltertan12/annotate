@@ -3,15 +3,26 @@
   "name": "Donut Annotator",
   "description": "Dublin?",
   "version": "1.0",
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
-  },
+  // "background": {
+  //   "scripts": [
+  //   ],
+  //   "persistent": false
+  // },
   "browser_action": {
 
   },
+  "content_scripts": [
+    {
+      "run_at": "document_end",
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"],
+      "css": ["css/main.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    "js/*.js",
+    "css/*.css"
+  ],
   "permissions": [
     "activeTab",
     "tabs"
