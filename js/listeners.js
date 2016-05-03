@@ -3,15 +3,15 @@
 var id = 0;
 
 document.addEventListener('mouseup', (event) => {
-  var annotations = document.getElementById('annotations');
-  var selection = document.getSelection(),
+  var annotations = document.getElementById('annotations'),
+      selection = document.getSelection(),
       idNumber = id,
       selectionString = selection.toString(),
       range, customTag, annotation;
 
   if (selectionString.length > 0) {
     annotation = prompt('Annotate this!');
-    console.log(annotation);
+
     if (annotation) {
       var annotationListItem = document.createElement('li');
       annotationListItem.innerHTML = '<strong>' + selectionString + '</strong>: ' + annotation;
@@ -42,7 +42,6 @@ document.addEventListener('mouseup', (event) => {
       range.insertNode(customTag);
 
       annotationListItem.addEventListener('click', (event) => {
-        console.log(idNumber);
         var annotatedTextElement = document.getElementById('annotation-' + idNumber);
         var x = annotatedTextElement.getBoundingClientRect().left,
             y = annotatedTextElement.getBoundingClientRect().top;

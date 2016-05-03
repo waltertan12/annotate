@@ -1,16 +1,13 @@
 'use strict';
 
-var s = document.createElement('script');
-s.src = chrome.extension.getURL('js/insertScript.js');
-var l = document.createElement('script');
-l.src = chrome.extension.getURL('js/listeners.js');
+var scripts = [
+  'js/insertScript.js',
+  'js/listeners.js'
+  ],
+  index, scriptTag;
 
-(document.head||document.documentElement).appendChild(s);
-(document.head||document.documentElement).appendChild(l);
-// s.onload = function() {
-//   s.parentNode.removeChild(s);
-// };
-
-// l.onload = function () {
-//   l.parentNode.removeChild(l);
-// }
+for (index = 0; index < scripts.length; index++) {
+  scriptTag = document.createElement('script');
+  scriptTag.src = chrome.extension.getURL(scripts[index]);
+  (document.head || document.documentElement).appendChild(scriptTag);
+}
